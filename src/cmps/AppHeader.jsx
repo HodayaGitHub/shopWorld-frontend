@@ -2,6 +2,10 @@
 
 export function AppHeader() {
     return (
-        <header>header </header>
+        <header className="app-header full main-layout">
+            
+            
+            <h1>Header</h1>
+             </header>
     )
 }
