@@ -7,6 +7,7 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 
 import { store } from './store/store.js'
+import { ToyIndex } from './pages/ToyIndex.jsx'
 
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
                     <main>
                         <Routes>
                             <Route element={<HomePage />} path="/" />
+                            <Route element={<ToyIndex />} path="/toy" />
                         </Routes>
                     </main>
                     <AppFooter />

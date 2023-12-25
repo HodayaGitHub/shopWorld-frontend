@@ -1,4 +1,3 @@
-
 import Axios from 'axios'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
@@ -52,6 +51,4 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return { txt: '', maxPrice: '' }
 }
-
-
 

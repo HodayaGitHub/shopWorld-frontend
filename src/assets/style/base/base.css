@@ -7,7 +7,9 @@ html {
 
 body {
   margin: 0;
-  color: var(--gray3);
+  /* color: var(--gray3); */
+  color: white;
+  background: black;
 }
 
 h1,
