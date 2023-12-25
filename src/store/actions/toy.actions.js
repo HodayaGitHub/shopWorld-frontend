@@ -23,21 +23,5 @@ export function loadToys() {
 
 
 
-// export function removeCarOptimistic(carId) {
-//     store.dispatch({ type: REMOVE_CAR, carId })
-//     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-
-//     return carService.remove(carId)
-//         .catch(err => {
-//             store.dispatch({ type: CAR_UNDO })
-//             console.log('car action -> Cannot remove car', err)
-//             throw err
-//         })
-//         .finally(() => {
-//             store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-//         })
-// }
-
-
 
 

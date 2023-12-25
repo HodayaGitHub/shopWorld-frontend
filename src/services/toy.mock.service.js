@@ -43,5 +43,6 @@ const toy = {
     inStock: true,
 }
 
+console.log(toy)
 // save(toy)
 

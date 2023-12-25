@@ -1,8 +1,8 @@
 import { toyService } from "../../services/toy.service.js"
 
 export const SET_TOYS = 'SET_TOYS'
-export const SET_IS_LOADING = 'SET_TOYS'
-export const SET_FILTER_BY = 'SET_TOYS'
+export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 const initialState = {
     toys: [],

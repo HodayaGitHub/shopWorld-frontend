@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage.jsx'
 
 import { store } from './store/store.js'
 import { ToyIndex } from './pages/ToyIndex.jsx'
+import { AboutUs } from './pages/AboutUs.jsx'
 
 
 export function App() {
@@ -21,6 +22,7 @@ export function App() {
                         <Routes>
                             <Route element={<HomePage />} path="/" />
                             <Route element={<ToyIndex />} path="/toy" />
+                            <Route element={<AboutUs />} path="/about" />
                         </Routes>
                     </main>
                     <AppFooter />
