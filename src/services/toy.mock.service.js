@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'todos'
+const STORAGE_KEY = 'toys'
 
 export const toyMockService = {
     query,

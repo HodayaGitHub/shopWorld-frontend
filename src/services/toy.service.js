@@ -9,6 +9,10 @@ const axios = Axios.create({
 
 const BASE_URL = 'toy/'
 
+const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 
+'Outdoor', 'Battery Powered']
+
+
 export const toyService = {
     query,
     getById,
@@ -41,14 +45,14 @@ function save(toy) {
 
 function getEmptyToy() {
     return {
-        name: 'toy' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        name: '',
+        price: '',
         inStock: true,
     }
 }
 
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { txt: '', maxPrice: '', inStock: true }
 }
 

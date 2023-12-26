@@ -1,32 +1,36 @@
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { loadToys } from '../store/actions/toy.actions'
+import React, { useEffect } from 'react'
+import { loadToys, removeToy, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
 import { toyService } from '../services/toy.service'
-
-import {ToyList} from '../cmps/ToyList'
+import { ToyList } from '../cmps/ToyList'
+import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js'
+import { useNavigate } from 'react-router-dom'
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
 
-    useEffect(() => {
+    const navigate = useNavigate()
 
+    useEffect(() => {
         console.log(toys)
         loadToys()
             .catch(() => {
-                showErrorMsg('Cannot show toys')
+                showErrorMsgRedux('Cannot show toys')
             })
     }, [filterBy])
 
     function onRemoveToy(toyId) {
-        removeToyOptimistic(toyId)
+        removeToy(toyId)
             .then(() => {
-                showSuccessMsg('toy removed')
+                showSuccessMsgRedux(`Removed item with ${toyId} id successfuly`)
+
             })
             .catch(err => {
                 console.log('Cannot remove toy', err)
-                showErrorMsg('Cannot remove toy')
+                showErrorMsgRedux(`Cannot remove toy`)
             })
     }
 
@@ -35,32 +39,37 @@ export function ToyIndex() {
         saveToy(toyToSave)
             .then((savedToy) => {
                 console.log('savedToy:', savedToy)
-                showSuccessMsg(`Toy added (vendor: ${savedToy.name})`)
+                showSuccessMsgRedux(`Toy added (name: ${savedToy.name})`)
+
             })
             .catch(err => {
                 console.log('Cannot add toy', err)
-                showErrorMsg('Cannot add toy')
+                showErrorMsgReduxMsg('Cannot add toy')
             })
     }
 
     function onEditToy(toy) {
-        const price = +prompt('New price?')
-        const toyToSave = { ...toy, price }
+        console.log(toy._id)
+        navigate(`/toy/${toy._id}`)
 
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                showSuccessMsg(`Toy updated to price: $${savedToy.price}`)
-            })
 
-            .catch(err => {
-                console.log('Cannot update toy', err)
-                showErrorMsg('Cannot update toy')
-            })
+        // const price = +prompt('New price?')
+        // const toyToSave = { ...toy, price }
+        // console.log('toyToSave', toyToSave)
+
+        // saveToy(toyToSave)
+        //     .then((savedToy) => {
+        //         showSuccessMsgRedux(`Toy updated to price: $${savedToy.price}`)
+        //     })
+
+        //     .catch(err => {
+        //         console.log('Cannot update toy', err)
+        //         showErrorMsgRedux('Cannot update toy')
+        //     })
     }
 
     function onSetFilter(filterBy) {
         console.log('filterBy:', filterBy)
-        // setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
         setFilterBy(filterBy)
     }
 
@@ -68,7 +77,7 @@ export function ToyIndex() {
         console.log('toy:', toy)
         console.log(`Adding ${toy.name} to Cart`)
         dispatch({ type: ADD_TOY_TO_CART, toy })
-        showSuccessMsg('Added to Cart')
+        showSuccessMsgRedux('Added to Cart')
     }
 
 
@@ -76,14 +85,17 @@ export function ToyIndex() {
         <div>
             <h3>Toys App</h3>
             <main>
-                {!isLoading && <ToyList
-                    toys={toys}
-                    onEditToy={onEditToy}
-                    onRemoveToy={onRemoveToy}
-                />}
+                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+
+                {!isLoading &&
+                    <ToyList
+                        toys={toys}
+                        onEditToy={onEditToy}
+                        onRemoveToy={onRemoveToy}
+                    />
+                }
                 {isLoading && <div>Loading...</div>}
             </main>
         </div>
     )
-
 }
