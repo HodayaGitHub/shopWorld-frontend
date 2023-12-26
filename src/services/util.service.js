@@ -5,7 +5,8 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     animateCSS,
-    debounce
+    debounce, 
+    getRandomColor
 }
 
 function makeId(length = 6) {
@@ -72,3 +73,12 @@ function animateCSS(el, animation) {
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
 }
+
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
