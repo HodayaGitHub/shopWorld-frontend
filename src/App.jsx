@@ -26,7 +26,6 @@ export function App() {
                             <Route element={<AboutUs />} path="/about" />
                             <Route element={<ToyEdit />} path="/toy/:toyId" />
                             <Route element={<Dashboard />} path="/dashboard" />
-
                         </Routes>
                     </main>
                     <AppFooter />
