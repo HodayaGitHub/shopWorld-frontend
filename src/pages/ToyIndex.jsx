@@ -15,7 +15,7 @@ export function ToyIndex() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(toys)
+        // console.log(toys)
         loadToys()
             .catch(() => {
                 showErrorMsgRedux('Cannot show toys')
@@ -52,7 +52,7 @@ export function ToyIndex() {
     }
 
     function onSetFilter(filterBy) {
-        console.log('filterBy:', filterBy)
+        // console.log('filterBy:', filterBy)
         setFilterBy(filterBy)
     }
 

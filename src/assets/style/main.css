@@ -18,6 +18,6 @@
 /* Components */
 @import "cmps/AppHeader.css";
 @import "cmps/UserMsg.css";
-@import "cmps/TodoFilter.css";
-@import "cmps/TodoList.css";
-@import "cmps/TodoPreview.css";
+@import "cmps/ToyFilter.css";
+@import "cmps/ToyList.css";
+@import "cmps/ToyPreview.css";
