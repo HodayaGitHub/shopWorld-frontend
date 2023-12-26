@@ -11,6 +11,7 @@
 /* Pages */
 @import "pages/TodoDetails.css";
 @import "pages/TodoEdit.css";
+@import "pages/Dashboard.css";
 
 
 /* Components */

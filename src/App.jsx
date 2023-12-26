@@ -10,7 +10,7 @@ import { store } from './store/store.js'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
-
+import { Dashboard } from './pages/Dashboard.jsx'
 
 export function App() {
 
@@ -25,6 +25,8 @@ export function App() {
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<AboutUs />} path="/about" />
                             <Route element={<ToyEdit />} path="/toy/:toyId" />
+                            <Route element={<Dashboard />} path="/dashboard" />
+
                         </Routes>
                     </main>
                     <AppFooter />
