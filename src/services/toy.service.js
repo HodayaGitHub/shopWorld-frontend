@@ -30,7 +30,7 @@ function query(filterBy = {}) {
 
 
 function queryAll() {
-    return httpService.get('toy/alltoys')
+    return httpService.get( BASE_URL + 'alltoys')
 }
 
 function getById(toyId) {
