@@ -11,6 +11,8 @@ export function AppHeader() {
                     <NavLink className="header-link" to="/">Home</NavLink>
                     <NavLink className="header-link" to="/toy">Toys</NavLink>
                     <NavLink className="header-link" to="/dashboard">Dashboard</NavLink>
+                    <NavLink className="header-link" to="/visitus">Our Stores</NavLink>
+
                 </nav>
             </section>
         </header>
