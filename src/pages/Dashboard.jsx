@@ -28,27 +28,6 @@ export function Dashboard() {
             })
     }, [])
 
-    // function updateChartData() {
-    //     const inStockCount = toys.filter(toy => toy.inStock).length
-    //     const outOfStockCount = toys.filter(toy => !toy.inStock).length
-
-    //     const updatedChartData = {
-    //         labels: ['In Stock', 'Out of Stock'],
-    //         datasets: [
-    //             {
-    //                 label: "Stock Status",
-    //                 data: [inStockCount, outOfStockCount],
-    //                 backgroundColor: [
-    //                     "rgba(75,192,192,1)",
-    //                     "#ecf0f1",
-    //                 ],
-    //                 borderColor: "black",
-    //                 borderWidth: 2
-    //             }
-    //         ]
-    //     }
-    //     return updatedChartData
-    // }
     function updateChartData() {
         const labelsCount = {}
     
@@ -68,6 +47,7 @@ export function Dashboard() {
     
         const totalInStockCount = toys.filter((toy) => toy.inStock).length
         const labels = Object.keys(labelsCount)
+        console.log(labels)
         const data = labels.map((label) => {
           const count = labelsCount[label]
           const percentage = (count / totalInStockCount) * 100 || 0 
@@ -105,30 +85,3 @@ export function Dashboard() {
 }
 
 
-
-
-// console.log('chart toys', toys)
-// const inStockCount = toys.filter(toy => toy.inStock).length
-// const outOfStockCount = toys.filter(toy => !toy.inStock).length
-
-// console.log('inStockCount', inStockCount)
-// console.log('outOfStockCount', outOfStockCount)
-
-
-// const [chartData, setChartData] = useState({
-//     labels: ['In Stock', 'Out of Stock'],
-
-//     datasets: [
-//         {
-//             label: "Stock Status",
-//             data: [inStockCount, outOfStockCount],
-//             backgroundColor: [
-//                 "rgba(75,192,192,1)",
-//                 "#ecf0f1",
-
-//             ],
-//             borderColor: "black",
-//             borderWidth: 2
-//         }
-//     ]
-// })

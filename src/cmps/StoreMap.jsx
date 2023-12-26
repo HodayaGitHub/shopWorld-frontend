@@ -56,5 +56,5 @@ export function StoreMap() {
                 </Popup>
             )}
         </MapContainer>
-    );
+    )
 }
