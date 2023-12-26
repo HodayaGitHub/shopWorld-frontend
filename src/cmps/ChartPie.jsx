@@ -1,25 +1,23 @@
 import React from "react"
-import { Bar } from "react-chartjs-2"
+import { Pie } from "react-chartjs-2";
 
 export function ChartPie({ chartData }) {
     return (
         <div className="chart-container">
-            <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
-            <Bar
+            <h2 className="chart-txt" style={{ textAlign: "center" }}>Pie Chart</h2>
+            <Pie
                 data={chartData}
                 options={{
                     plugins: {
                         title: {
                             display: true,
                             text: "Toys stock status"
-                        },
-                        legend: {
-                            display: false
                         }
                     }
                 }}
             />
         </div>
-    );
+    )
 }
+    
 

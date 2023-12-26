@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js'
 import React, { useEffect } from 'react'
-import { ChartPie } from "../../src/cmps/Chart"
+import { ChartPie } from "../cmps/ChartPie.jsx"
 import { CategoryScale } from "chart.js"
 import Chart from "chart.js/auto"
 import { useSelector } from 'react-redux'
