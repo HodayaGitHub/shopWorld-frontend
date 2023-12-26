@@ -9,21 +9,28 @@ const axios = Axios.create({
 
 const BASE_URL = 'toy/'
 
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 
-'Outdoor', 'Battery Powered']
+const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
+    'Outdoor', 'Battery Powered']
 
 
 export const toyService = {
     query,
+    queryAll,
     getById,
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    
 }
 
 function query(filterBy = {}) {
     return httpService.get(BASE_URL, filterBy)
+}
+
+
+function queryAll() {
+    return httpService.get('toy/alltoys')
 }
 
 function getById(toyId) {
