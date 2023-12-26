@@ -26,7 +26,7 @@ export function loadToys() {
 export function removeToy(toyId) {
     store.dispatch({ type: REMOVE_TOY, toyId })
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-
+   
     return toyService.remove(toyId)
         .catch(err => {
             store.dispatch({ type: TOY_UNDO })
@@ -40,12 +40,9 @@ export function removeToy(toyId) {
 
 
 export function saveToy(toy) {
-    console.log('toy', toy)
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     return toyService.save(toy)
         .then(toyToSave => {
-            console.log('type', type)
-            console.log('toyToSave', toyToSave)
             store.dispatch({ type, toy: toyToSave })
             return toyToSave
         })

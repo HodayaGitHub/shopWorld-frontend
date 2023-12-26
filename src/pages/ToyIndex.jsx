@@ -26,7 +26,6 @@ export function ToyIndex() {
         removeToy(toyId)
             .then(() => {
                 showSuccessMsgRedux(`Removed item with ${toyId} id successfuly`)
-
             })
             .catch(err => {
                 console.log('Cannot remove toy', err)
@@ -49,23 +48,7 @@ export function ToyIndex() {
     }
 
     function onEditToy(toy) {
-        console.log(toy._id)
         navigate(`/toy/${toy._id}`)
-
-
-        // const price = +prompt('New price?')
-        // const toyToSave = { ...toy, price }
-        // console.log('toyToSave', toyToSave)
-
-        // saveToy(toyToSave)
-        //     .then((savedToy) => {
-        //         showSuccessMsgRedux(`Toy updated to price: $${savedToy.price}`)
-        //     })
-
-        //     .catch(err => {
-        //         console.log('Cannot update toy', err)
-        //         showErrorMsgRedux('Cannot update toy')
-        //     })
     }
 
     function onSetFilter(filterBy) {
@@ -74,7 +57,6 @@ export function ToyIndex() {
     }
 
     function addToCart(toy) {
-        console.log('toy:', toy)
         console.log(`Adding ${toy.name} to Cart`)
         dispatch({ type: ADD_TOY_TO_CART, toy })
         showSuccessMsgRedux('Added to Cart')

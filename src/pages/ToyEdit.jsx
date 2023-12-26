@@ -13,7 +13,6 @@ export function ToyEdit() {
 
     useEffect(() => {
         if (params.toyId) {
-            console.log(params.toyId)
             loadToy()
         }
     }, [params.toyId])
@@ -22,7 +21,6 @@ export function ToyEdit() {
     function loadToy() {
         toyService.getById(params.toyId)
             .then((toy) => {
-                console.log('toy', toy)
                 setToyToEdit(toy)
             })
             .catch(err => console.log('err:', err))
@@ -37,21 +35,8 @@ export function ToyEdit() {
     }
 
 
-    // function handleChange({ target }) {
-    //     let { value, name: field, type } = target;
-    //     value = type === 'number' ? +value : value;
-    //     setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }));
-    // }
-
-
 
     function onSaveToy(ev) {
-        console.log(toyToEdit)
-        // const newToy = {
-        //     ...toyToEdit,
-        //     inStock: toyToEdit.inStock === 'true' ? true : false,
-        // }
-
         ev.preventDefault()
         saveToy(toyToEdit)
             .then(() => {
@@ -63,8 +48,6 @@ export function ToyEdit() {
             })
     }
 
-
-    // const { name, price, inStock } = toyToEdit
 
     return (
         <section className="toy-edit">
