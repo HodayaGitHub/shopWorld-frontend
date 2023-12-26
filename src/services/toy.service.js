@@ -21,7 +21,7 @@ export const toyService = {
     remove,
     getEmptyToy,
     getDefaultFilter,
-    
+    getDefaultChartData,
 }
 
 function query(filterBy = {}) {
@@ -63,3 +63,21 @@ function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: true }
 }
 
+
+function getDefaultChartData() {
+    return {
+        labels: ['In Stock', 'Out of Stock'],
+        datasets: [
+            {
+                label: "Stock Status",
+                data: [0, 0],
+                backgroundColor: [
+                    "rgba(75,192,192,1)",
+                    "#ecf0f1",
+                ],
+                borderColor: "black",
+                borderWidth: 2
+            }
+        ]
+    }
+}
