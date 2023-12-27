@@ -48,7 +48,7 @@ export function MultiSelect({ labelsData }) {
     }
 
     return (
-        <div>
+        <div className="labels-filter">
             <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="name-label">Labels</InputLabel>
                 <Select

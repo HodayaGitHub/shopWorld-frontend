@@ -1,8 +1,30 @@
-.todo-filter {
-    background-color: var(--clr2bg);
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.todo-filter form {
+.toy-filter {
+}
+
+.toy-filter form {
     display: grid;
-    grid-template-columns: 100px 200px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.labels-filter {}
+
+
+.formik-field input {
+    /* background-color: red; */
+    min-height: 3.4em;
+    padding: 0;
+    margin: 0;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
