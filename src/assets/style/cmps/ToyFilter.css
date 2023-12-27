@@ -2,22 +2,31 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 2rem;
+    /* justify-content: space-around; */
 }
 
-.toy-filter {
-}
+.toy-filter {}
 
 .toy-filter form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
 }
 
-.labels-filter {}
+.labels-filter {
+    /* flex-grow: 2; */
+    /* Other styles for .labels-filter */
+}
 
 
-.formik-field input {
-    /* background-color: red; */
-    min-height: 3.4em;
+
+.formik {
+    display: flex;
+    gap: 2rem;
+}
+
+.formik-field-filter input {
+    height: 3.5em;
     padding: 0;
     margin: 0;
 }
@@ -25,6 +34,6 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }

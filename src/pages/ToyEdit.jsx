@@ -5,6 +5,14 @@ import { toyService } from '../services/toy.service'
 import { saveToy } from '../../src/store/actions/toy.actions'
 import { showErrorMsgRedux, showSuccessMsgRedux } from "../store/actions/app.actions"
 
+import { Formik, Form, Field } from 'formik'
+import { Button, TextField } from '@mui/material'
+
+function CustomInput(props) {
+    return <TextField {...props} variant="outlined" />
+}
+
+
 export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
 
@@ -53,26 +61,38 @@ export function ToyEdit() {
     return (
         <section className="toy-edit">
             <h1>Edit Toy</h1>
-            <form onSubmit={onSaveToy}>
-                <label htmlFor="name">Toy's Name</label>
-                <input
-                    onChange={handleChange}
-                    value={toyToEdit.name || ''}
-                    type="text"
-                    name="name"
-                    id="name"
-                />
 
-                <label htmlFor="price">Price</label>
-                <input
-                    onChange={handleChange}
-                    value={toyToEdit.price || ''}
-                    type="number"
-                    name="price"
-                    id="price"
-                />
-                <button type="submit">Save</button>
-            </form>
+            <Formik
+                initialValues={{
+                    txt: '',
+                    maxPrice: '',
+                }}
+            >
+
+                <Form className="formik">
+                    <Field className="formik-field-edit"
+                        id="name"
+                        as={CustomInput}
+                        name="name"
+                        label="Toy's Name"
+                        type="text"
+                        onChange={handleChange}
+                        value={toyToEdit.name || ''}
+                    />
+
+                    <Field className="formik-field"
+                        id="price"
+                        as={CustomInput}
+                        name="price"
+                        label="Max Price"
+                        type="number"
+                        onChange={handleChange}
+                        value={toyToEdit.price || ''}
+                    />
+                </Form>
+            </Formik>
+
+            <button type="submit">Save</button>
         </section>
     )
 }

@@ -53,41 +53,41 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
             <div className="filter-container">
 
+                <div>
+                    <Formik
+                        initialValues={{
+                            txt: '',
+                            maxPrice: '',
+                        }}
+                    >
+                        <Form className="formik">
+                            <Field className="formik-field-filter"
+                                id="name"
+                                as={CustomInput}
+                                name="txt"
+                                label="Toy Name"
+                                type="text"
+                                onChange={handleChange}
+                                value={filterByToEdit.txt}
+                            />
 
-                <Formik
-                    initialValues={{
-                        txt: '',
-                        maxPrice: '',
-                    }}
-                >
-                    <Form className="formik">
-                        <Field className="formik-field"
-                            id="name"
-                            as={CustomInput}
-                            name="txt"
-                            label="Toy Name"
-                            type="text"
-                            onChange={handleChange}
-                            value={filterByToEdit.txt}
-                        />
+                            <Field className="formik-field"
+                                id="maxPrice"
+                                as={CustomInput}
+                                name="maxPrice"
+                                type="number"
+                                label="Max Price"
+                                onChange={handleChange}
+                                value={filterByToEdit.maxPrice || ''}
+                            />
+                        </Form>
+                    </Formik>
+                </div>
 
-                        <Field className="formik-field"
-                            id="maxPrice"
-                            as={CustomInput}
-                            name="maxPrice"
-                            type="number"
-                            label="Max Price"
-                            onChange={handleChange}
-                            value={filterByToEdit.maxPrice || ''}
-                        />
-                    </Form>
-                </Formik>
-
-
-
-                <MultiSelect labelsData={labelsData} handleChange={handleChange} />
+                    <MultiSelect labelsData={labelsData} handleChange={handleChange} />
 
             </div>
+
 
         </section>
     )

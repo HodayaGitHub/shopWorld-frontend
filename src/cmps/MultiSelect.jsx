@@ -48,34 +48,35 @@ export function MultiSelect({ labelsData }) {
     }
 
     return (
-        <div className="labels-filter">
-            <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="name-label">Labels</InputLabel>
-                <Select
-                    labelId="name-label"
-                    id="multiple-label"
-                    multiple
-                    value={LableName}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Labels" />}
-                    MenuProps={MenuProps}
-                >
-                    {labelsData && (
-                        labelsData.map((label) => (
-                            <MenuItem
-                                key={label}
-                                value={label}
-                                style={getStyles(label, LableName, theme)}
-                            >
-                                {label}
-                            </MenuItem>
-                        ))
-                    )}
+        <FormControl className="labels-filter" sx={{ m: 1, flexGrow: 1, maxWidth: '500px'}}>
+            <InputLabel id="name-label">Labels</InputLabel>
+            <Select 
+                labelId="name-label"
+                id="multiple-label"
+                multiple
+                value={LableName}
+                onChange={handleChange}
+                input={<OutlinedInput label="Labels" />}
+                MenuProps={MenuProps}
+            >
+                {labelsData && (
+                    labelsData.map((label) => (
+                        <MenuItem
+                            key={label}
+                            value={label}
+                            style={getStyles(label, LableName, theme)}
+                        >
+                            {label}
+                        </MenuItem>
+                    ))
+                )}
 
 
-                </Select>
-            </FormControl>
-        </div>
+            </Select>
+
+
+        
+        </FormControl>
     )
 }
 
