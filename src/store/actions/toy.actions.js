@@ -39,7 +39,7 @@ export function loadToysForStatistics() {
         })
 }
 
-export function loadLabelsForStatistics() {
+export function loadLabels() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
     return toyService.queryAll()

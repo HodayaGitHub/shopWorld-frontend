@@ -67,7 +67,7 @@ export function ToyIndex() {
         <div>
             <h3>Toys App</h3>
             <main>
-                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+                <ToyFilter toys={toys} filterBy={filterBy} onSetFilter={onSetFilter} />
 
                 {!isLoading &&
                     <ToyList

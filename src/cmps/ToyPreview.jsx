@@ -8,11 +8,17 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
 
             <Link to={`/toy/${toy._id}`} >
                 <h4>{toy.name}</h4>
-                <h1>🚁</h1>
             </Link>
 
-            <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <div>
+            <div className="img-container">
+                <img className="toy-img"
+                    src={`/images/toys/${toy.imageFilename}.png`}
+                    alt={toy.name}
+                />
+            </div>
+
+            <span className="toy-price">Price: <span>${toy.price.toLocaleString()}</span></span>
+            <div className="actions-btns-container">
                 <button onClick={() => {
                     onRemoveToy(toy._id)
                 }}>x</button>

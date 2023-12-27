@@ -1,20 +1,12 @@
 .toy-list {
-    /* display: flex;
-    flex-wrap: wrap;  */
-
-
     padding: 15px 0 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    /* grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr)); */
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); /* Set the max height to 200 pixels */
     gap: 15px;
 }
 
-.toy-list li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: var(--clr1bg);
-    margin: 0.5em;
-}
+
+
+
