@@ -33,19 +33,24 @@ export function ToyEdit() {
             })
             .catch(err => console.log('err:', err))
     }
-
     function handleChange(ev) {
-        const field = ev.target.name
-        let value = ev.target.type === 'number' ? +ev.target.value : ev.target.value
-        if (ev.target.type === 'select-multiple')
-            value = Array.from(ev.target.selectedOptions, (option) => option.value)
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
+        const { name, value, type, selectedOptions } = ev.target;
+        const newValue =
+            type === 'number'
+                ? parseFloat(value)
+                : type === 'select-multiple'
+                    ? Array.from(selectedOptions, (option) => option.value)
+                    : value;
+
+        setToyToEdit((prevToy) => ({
+            ...prevToy,
+            [name]: newValue,
+        }))
     }
 
 
-
-    function onSaveToy(ev) {
-        ev.preventDefault()
+    function onSaveToy() {
+        // ev.preventDefault()
         saveToy(toyToEdit)
             .then(() => {
                 showSuccessMsgRedux('Toy saved successfully')
@@ -67,6 +72,8 @@ export function ToyEdit() {
                     txt: '',
                     maxPrice: '',
                 }}
+
+                onSubmit={onSaveToy}
             >
 
                 <Form className="formik">
@@ -89,10 +96,9 @@ export function ToyEdit() {
                         onChange={handleChange}
                         value={toyToEdit.price || ''}
                     />
+                    <Button type="submit" variant="contained">save</Button>
                 </Form>
             </Formik>
-
-            <button type="submit">Save</button>
         </section>
     )
 }
