@@ -39,6 +39,26 @@ export function loadToysForStatistics() {
         })
 }
 
+export function loadLabelsForStatistics() {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+
+    return toyService.queryAll()
+        .then((toys) => {
+            // store.dispatch({ type: SET_TOYS, toys })
+            const labels = toyService.labelsCategories(toys)
+            // console.log('labels', labels)
+
+            return labels
+        })
+        .catch(err => {
+            console.log('toy action -> Cannot load labels', err)
+            throw err
+        })
+        .finally(() => {
+            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+        })
+}
+
 
 export function removeToy(toyId) {
     store.dispatch({ type: REMOVE_TOY, toyId })

@@ -3,16 +3,28 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 // import { useEffectUpdate } from "./customHooks/useEffectUpdate.js"
-import {MultiSelect} from './MultiSelect'
-
+import { MultiSelect } from './MultiSelect'
+import { toyService } from "../services/toy.service.js"
+import { loadLabelsForStatistics } from "../store/actions/toy.actions.js"
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     onSetFilter = useRef(utilService.debounce(onSetFilter))
 
+    const [labelsData, setLabelsData] = useState()
+
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
+
+        loadLabelsForStatistics()
+            .then((labels) => {
+                setLabelsData(labels)
+            })
+            .catch((error) => {
+                console.error('Error loading labels:', error)
+            })
+
     }, [filterByToEdit])
 
     function handleChange({ target }) {
@@ -44,8 +56,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 />
 
             </form>
-
-            <MultiSelect/>
+            {/* {console.log('labelsData', labelsData)} */}
+            <MultiSelect labelsData={labelsData} />
 
         </section>
     )
