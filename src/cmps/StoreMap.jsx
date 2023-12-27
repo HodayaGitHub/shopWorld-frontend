@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Popup, } from 'react-leaflet'
+import { MapContainer, TileLayer, Popup, useMap } from 'react-leaflet'
 import { Icon } from 'leaflet'
 
 import { mapService } from '../services/map.service'
@@ -10,7 +10,6 @@ import store from '/store.png'
 
 export function StoreMap() {
     const [storeData, setStoresData] = useState([])
-    const [activeStore, setActiveStore] = useState(null)
 
     const storeIcon = new Icon({
         iconUrl: store,
@@ -27,34 +26,34 @@ export function StoreMap() {
             })
     }, [])
 
+    function handleMoveToLocation(location) {
+        map.setView(location, 14);
+      }
+
     return (
-        <MapContainer center={[31.668320, 34.783370]} zoom={9} style={{ width: '100%', height: '100%' }}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <React.Fragment>
+            <MapContainer
+                center={[31.668320, 34.783370]}
+                zoom={9}
+                style={{ width: '100%', height: '100%' }}>
 
-            {storeData.map((store) => (
-                <StoreMarker
-                    key={store.properties.PARK_ID}
-                    store={store} icon={storeIcon}
-                    setActiveStore={setActiveStore}
-                />
-            ))}
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-            {activeStore && (
-                <Popup
-                    position={[
-                        activeStore.geometry.coordinates[1],
-                        activeStore.geometry.coordinates[0],
-                    ]}
-                    onClose={() => {
-                        setActiveStore(null);
-                    }}
-                >
-                    <div>
-                        <h2>{activeStore.properties.NAME}</h2>
-                        <p>{activeStore.properties.DESCRIPTIO}</p>
-                    </div>
-                </Popup>
-            )}
-        </MapContainer>
+                {storeData.map((store) => (
+                    <StoreMarker
+                        key={store.properties.PARK_ID}
+                        store={store}
+                        icon={storeIcon}
+                        onclose={onclose}
+                        handleMoveToLocation={handleMoveToLocation}
+                    />
+                )
+                )}
+            </MapContainer>
+     
+
+
+        </React.Fragment>
+
     )
 }
