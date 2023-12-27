@@ -12,30 +12,30 @@ Chart.register(CategoryScale)
 
 
 export function Dashboard() {
-    const [chartData, setChartData] = useState(toyService.getDefaultChartData())
-    const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+  const [chartData, setChartData] = useState(toyService.getDefaultChartData())
+  const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
 
-    useEffect(() => {
-      loadToysForStatistics()
-        .then((toys) => {
-          setChartData(toyService.updateChartData(toys))
-        })
-        .catch(() => {
-          showErrorMsgRedux('Cannot load toys')
-        })
-    }, [])
+  useEffect(() => {
+    loadToysForStatistics()
+      .then((toys) => {
+        setChartData(toyService.updateChartData(toys))
+      })
+      .catch(() => {
+        showErrorMsgRedux('Cannot load toys')
+      })
+  }, [])
 
 
-    return (
-        <React.Fragment>
-            {!isLoading &&
-                <div className="App">
-                    <ChartPie chartData={chartData} />
-                </div>
-            }
-            {isLoading && <div>Loading...</div>}
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      {!isLoading &&
+        <div className="App">
+          <ChartPie chartData={chartData} />
+        </div>
+      }
+      {isLoading && <div>Loading...</div>}
+    </React.Fragment>
+  )
 }
 
 
