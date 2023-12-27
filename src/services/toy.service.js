@@ -22,7 +22,11 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getDefaultChartData,
+    updateChartData,
+
 }
+
+// const labelsCount = {}
 
 function query(filterBy = {}) {
     return httpService.get('toy', filterBy)
@@ -30,7 +34,7 @@ function query(filterBy = {}) {
 
 
 function queryAll() {
-    return httpService.get( BASE_URL + 'alltoys')
+    return httpService.get(BASE_URL + 'alltoys')
 }
 
 function getById(toyId) {
@@ -64,6 +68,8 @@ function getDefaultFilter() {
 }
 
 
+
+// Charts :
 function getDefaultChartData() {
     return {
         labels: ['In Stock', 'Out of Stock'],
@@ -80,4 +86,111 @@ function getDefaultChartData() {
             }
         ]
     }
+}
+
+// iterating through all the toys and their labels. 
+// It sets the initial count for each label to 0 if it doesn't exist
+function initializeLabelsCount(toys, labelsCount) {
+    toys.forEach((toy) => {
+        toy.labels.forEach((label) => {
+            labelsCount[label] = labelsCount[label] || 0;
+        })
+    })
+
+    return labelsCount
+}
+
+
+// increments the count for each label only for toys that are in stock. 
+// It iterates through the toys, checks if each toy is in stock
+// function countInStockLabels(toys) {
+//     const labelsCount = {}
+
+//     toys.forEach((toy) => {
+//         if (toy.inStock) {
+//             toy.labels.forEach((label) => {
+//                 labelsCount[label] = (labelsCount[label] || 0) + 1
+//             })
+//         }
+//     })
+
+//     return labelsCount
+// }
+
+
+// function updateChartData() {
+//     queryAll()
+//         .then((toys) => {
+//             const allLabelsCount = initializeLabelsCount(toys)
+//             const inStockLabelsCount = countInStockLabels(toys)
+//             const totalInStockCount = toys.filter((toy) => toy.inStock).length
+//             const labels = Object.keys(labelsCount)
+
+//             const data = labels.map((label) => {
+//                 const count = labelsCount[label]
+//                 const percentage = (count / totalInStockCount) * 100 || 0
+//                 return percentage.toFixed(2)
+
+//                 console.log('All Labels Count:', allLabelsCount)
+//                 console.log('In-Stock Labels Count:', inStockLabelsCount)
+//             })
+//                 .catch((error) => {
+//                     console.error('Error fetching toys:', error)
+//                 })
+//         }
+
+// Function to count in-stock labels
+function countInStockLabels(toys) {
+    let labelsCount = {} // Initialize labelsCount here
+
+    labelsCount = initializeLabelsCount(toys, labelsCount)
+
+    toys.forEach((toy) => {
+        if (toy.inStock) {
+            toy.labels.forEach((label) => {
+                labelsCount[label] = (labelsCount[label] || 0) + 1
+            })
+        }
+    })
+
+    return labelsCount
+}
+
+
+
+// Function to calculate label counts and update chart data
+function updateChartData(toys) {
+    // const allLabelsCount = initializeLabelsCount(toys)
+    const inStockLabelsCount = countInStockLabels(toys)
+
+    const totalInStockCount = toys.filter((toy) => toy.inStock).length
+    const labels = Object.keys(inStockLabelsCount)
+    const data = lablesData(labels, inStockLabelsCount, totalInStockCount)
+
+    const backgroundColor = labels.map(() => utilService.getRandomColor())
+
+    const updatedChartData = {
+        labels,
+        datasets: [
+            {
+                label: "In Stock by Label",
+                data,
+                backgroundColor,
+                borderColor: "black",
+                borderWidth: 2,
+            },
+        ],
+    }
+
+    console.log(updatedChartData)
+    return updatedChartData
+}
+
+
+function lablesData(labels, inStockLabelsCount, totalInStockCount) {
+     return labels.map((label) => {
+        const count = inStockLabelsCount[label] || 0
+        const percentage = (count / totalInStockCount) * 100 || 0
+        return parseFloat(percentage.toFixed(2))
+    })
 }

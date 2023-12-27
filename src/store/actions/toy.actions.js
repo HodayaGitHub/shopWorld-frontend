@@ -24,9 +24,11 @@ export function loadToys() {
 
 export function loadToysForStatistics() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+
     return toyService.queryAll()
-        .then(toys => {
-            store.dispatch({ type: SET_TOYS, toys })
+        .then((toys) => {
+            // store.dispatch({ type: SET_TOYS, toys })
+            return toys
         })
         .catch(err => {
             console.log('toy action -> Cannot load toys', err)
@@ -41,7 +43,7 @@ export function loadToysForStatistics() {
 export function removeToy(toyId) {
     store.dispatch({ type: REMOVE_TOY, toyId })
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-   
+
     return toyService.remove(toyId)
         .catch(err => {
             store.dispatch({ type: TOY_UNDO })
