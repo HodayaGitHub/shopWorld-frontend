@@ -65,10 +65,8 @@ export function ToyIndex() {
 
     return (
         <div>
-            <h3>Toys App</h3>
             <main>
                 <ToyFilter toys={toys} filterBy={filterBy} onSetFilter={onSetFilter} />
-
                 {!isLoading &&
                     <ToyList
                         toys={toys}
@@ -76,7 +74,7 @@ export function ToyIndex() {
                         onRemoveToy={onRemoveToy}
                     />
                 }
-                {isLoading && <div>Loading...</div>}
+                {/* {isLoading && <div>Loading...</div>} */}
             </main>
         </div>
     )

@@ -27,9 +27,7 @@ export function MultiSelect({ labelsData }) {
 
     function handleChange(event) {
 
-        const {
-            target: { value, type },
-        } = event
+        const { target: { value, type } } = event
         console.log('value:', value);
 
         console.log('Type:', type);

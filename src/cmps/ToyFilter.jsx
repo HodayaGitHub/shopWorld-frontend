@@ -6,6 +6,16 @@ import { utilService } from "../services/util.service.js"
 import { MultiSelect } from './MultiSelect'
 import { toyService } from "../services/toy.service.js"
 import { loadLabels } from "../store/actions/toy.actions.js"
+import { Formik, Form, Field } from 'formik'
+import { Button, TextField } from '@mui/material'
+
+
+
+
+function CustomInput(props) {
+    return <TextField {...props} variant="outlined" />
+}
+
 
 export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
@@ -27,57 +37,53 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        let { value, name: field, type } = target
-        value = type === 'number' ? +value : value
-        if (target.type === 'select-multiple') value = Array.from(target.selectedOptions, (option) => option.value)
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+        let { value, name: field, type } = target;
+        value = type === 'number' ? +value : value;
+    
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
+    
+        // Invoke the debounced function
+        onSetFilter.current(filterByToEdit)
     }
-
-    let timer;
-
-    document.addEventListener('input', e => {
-        const el = e.target;
-
-        if (el.matches('[data-color]')) {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                document.documentElement.style.setProperty(`--color-${el.dataset.color}`, el.value);
-            }, 100)
-        }
-    })
+    
 
     return (
         <section className="toy-filter full main-layout">
             <h2>Toys Filter</h2>
-            <form >
-                <label className="input" htmlFor="name">
-                    <input className="input__field"
-                        type="text"
+
+            <Formik
+                initialValues={{
+                    txt: '',
+                    maxPrice: '',
+                }}
+            >
+                <Form className="formik">
+                    <Field
                         id="name"
+                        as={CustomInput}
                         name="txt"
-                        placeholder="By name"
-                        value={filterByToEdit.txt}
+                        label="Toy Name"
+                        type="text"
                         onChange={handleChange}
+                        value={filterByToEdit.txt}
                     />
-                    <span class="input__label">Some Fancy Label</span>
-                </label>
-                <label htmlFor="maxPrice">Max price:</label>
-                <input type="number"
-                    id="maxPrice"
-                    name="maxPrice"
-                    placeholder="By max price"
-                    value={filterByToEdit.maxPrice || ''}
-                    onChange={handleChange}
-                />
 
-            </form>
-            <MultiSelect
-                labelsData={labelsData}
-            />
-            {/* {console.log('labelsData', labelsData)} */}
+                    <Field
+                        id="maxPrice"
+                        as={CustomInput}
+                        name="maxPrice"
+                        type="number"
+                        label="Max Price"
+                        onChange={handleChange}
+                        value={filterByToEdit.maxPrice || ''}
+                    />
+                </Form>
+            </Formik>
 
 
-            {/* <MultiSelect labelsData={labelsData} /> */}
+
+            <MultiSelect labelsData={labelsData} handleChange={handleChange} />
+
 
         </section>
     )
