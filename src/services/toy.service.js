@@ -7,7 +7,7 @@ const axios = Axios.create({
     withCredentials: true
 })
 
-const BASE_URL = 'toy/'
+
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
     'Outdoor', 'Battery Powered']
@@ -15,7 +15,6 @@ const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
 
 export const toyService = {
     query,
-    queryAll,
     getById,
     save,
     remove,
@@ -28,15 +27,12 @@ export const toyService = {
 }
 
 // const labelsCount = {}
+const BASE_URL = 'toy/'
 
 function query(filterBy = {}) {
-    return httpService.get('toy', filterBy)
+    return httpService.get(BASE_URL, filterBy)
 }
 
-
-function queryAll() {
-    return httpService.get(BASE_URL + 'alltoys')
-}
 
 function getById(toyId) {
     return httpService.get(BASE_URL + toyId)

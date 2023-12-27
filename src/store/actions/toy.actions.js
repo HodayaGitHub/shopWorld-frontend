@@ -25,7 +25,7 @@ export function loadToys() {
 export function loadToysForStatistics() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
-    return toyService.queryAll()
+    return toyService.query()
         .then((toys) => {
             // store.dispatch({ type: SET_TOYS, toys })
             return toys
@@ -42,7 +42,7 @@ export function loadToysForStatistics() {
 export function loadLabels() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
-    return toyService.queryAll()
+    return toyService.query()
         .then((toys) => {
             // store.dispatch({ type: SET_TOYS, toys })
             const labels = toyService.labelsCategories(toys)
