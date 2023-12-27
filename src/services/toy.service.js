@@ -30,7 +30,7 @@ export const toyService = {
 const BASE_URL = 'toy/'
 
 function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+    return httpService.get('toy', filterBy)
 }
 
 
