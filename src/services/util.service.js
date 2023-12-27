@@ -6,7 +6,9 @@ export const utilService = {
     saveToStorage,
     animateCSS,
     debounce, 
-    getRandomColor
+    getRandomColor, 
+    getRandomColorWithAlpha,
+    getRandomBrightenedColor,
 }
 
 function makeId(length = 6) {
@@ -75,10 +77,39 @@ function animateCSS(el, animation) {
 }
 
 function getRandomColor() {
-    const letters = "0123456789ABCDEF";
+    const letters = "0123456789ABCDEF"
     let color = "#";
     for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+      color += letters[Math.floor(Math.random() * 16)]
     }
-    return color;
+    return color
   }
+
+
+  function getRandomColorWithAlpha() {
+    // Generate random values for red, green, and blue
+    const red = Math.floor(Math.random() * 256)
+    const green = Math.floor(Math.random() * 256)
+    const blue = Math.floor(Math.random() * 256)
+
+    // Combine the color values and set alpha to 0.2
+    const color = `rgba(${red},${green},${blue},0.5)`
+
+    return color;
+}
+
+
+function getRandomBrightenedColor() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    const brightenedRed = Math.min(255, red + 50)
+    const brightenedGreen = Math.min(255, green + 30)
+    const brightenedBlue = Math.min(255, blue + 50)
+
+    const color = `rgb(${brightenedRed},${brightenedGreen},${brightenedBlue}, 0.5)`
+
+    return color
+}
+

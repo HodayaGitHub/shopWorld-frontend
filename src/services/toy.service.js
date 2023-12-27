@@ -136,8 +136,8 @@ function updateChartData(toys) {
     const labels = Object.keys(inStockLabelsCount)
     const data = labelsData(labels, inStockLabelsCount, totalInStockCount)
 
-    const backgroundColor = labels.map(() => utilService.getRandomColor())
-
+    const backgroundColor = labels.map(() => utilService.getRandomColorWithAlpha())
+    const colors = backgroundColor
     const updatedChartData = {
         labels,
         datasets: [
@@ -145,7 +145,7 @@ function updateChartData(toys) {
                 label: "In Stock by Label",
                 data,
                 backgroundColor,
-                borderColor: "black",
+                borderColor: colors,
                 borderWidth: 2,
             },
         ],
