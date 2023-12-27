@@ -67,8 +67,6 @@ function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: true }
 }
 
-
-
 // Charts :
 function getDefaultChartData() {
     return {
@@ -141,7 +139,7 @@ function initializeLabelsCount(toys, labelsCount) {
 
 // Function to count in-stock labels
 function countInStockLabels(toys) {
-    let labelsCount = {} // Initialize labelsCount here
+    let labelsCount = {} 
 
     labelsCount = initializeLabelsCount(toys, labelsCount)
 
@@ -182,7 +180,6 @@ function updateChartData(toys) {
         ],
     }
 
-    console.log(updatedChartData)
     return updatedChartData
 }
 
