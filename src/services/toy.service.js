@@ -67,6 +67,8 @@ function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: true }
 }
 
+
+
 // Charts :
 function getDefaultChartData() {
     return {
@@ -98,44 +100,6 @@ function initializeLabelsCount(toys, labelsCount) {
     return labelsCount
 }
 
-
-// increments the count for each label only for toys that are in stock. 
-// It iterates through the toys, checks if each toy is in stock
-// function countInStockLabels(toys) {
-//     const labelsCount = {}
-
-//     toys.forEach((toy) => {
-//         if (toy.inStock) {
-//             toy.labels.forEach((label) => {
-//                 labelsCount[label] = (labelsCount[label] || 0) + 1
-//             })
-//         }
-//     })
-
-//     return labelsCount
-// }
-
-
-// function updateChartData() {
-//     queryAll()
-//         .then((toys) => {
-//             const allLabelsCount = initializeLabelsCount(toys)
-//             const inStockLabelsCount = countInStockLabels(toys)
-//             const totalInStockCount = toys.filter((toy) => toy.inStock).length
-//             const labels = Object.keys(labelsCount)
-
-//             const data = labels.map((label) => {
-//                 const count = labelsCount[label]
-//                 const percentage = (count / totalInStockCount) * 100 || 0
-//                 return percentage.toFixed(2)
-
-//                 console.log('All Labels Count:', allLabelsCount)
-//                 console.log('In-Stock Labels Count:', inStockLabelsCount)
-//             })
-//                 .catch((error) => {
-//                     console.error('Error fetching toys:', error)
-//                 })
-//         }
 
 // Function to count in-stock labels
 function countInStockLabels(toys) {
