@@ -8,6 +8,8 @@
     margin: 0.5em;
     gap: 10px;
     border-radius: 10px;
+    color: black;
+
 }
 
 .img-container {
@@ -19,7 +21,7 @@
 
 
 .toy-img {
-    max-width: 100%; 
+    max-width: 100%;
     max-height: 200px;
     width: auto;
     height: auto;
@@ -41,4 +43,15 @@
 .toy-preview h4 {
     text-transform: capitalize;
     color: black;
+}
+
+
+.map-button{
+    /* background-color: blue; */
+    /* position: relative; */
+    z-index: 10;
+}
+
+.leaflet-container {
+    z-index: 2;
 }

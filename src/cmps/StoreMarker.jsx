@@ -2,8 +2,7 @@
 import React from 'react'
 import { Marker, Popup, useMap } from 'react-leaflet'
 
-export function StoreMarker({ store, icon , handleMoveToLocation}) {
-    const map = useMap()
+export function StoreMarker({ store, icon , mappp}) {
 
 
     return (
@@ -15,7 +14,7 @@ export function StoreMarker({ store, icon , handleMoveToLocation}) {
                 ]}
                 icon={icon}
                 onClick={() => {
-                    map.setView(
+                    mappp.setView(
                         [
                             store.geometry.coordinates[1],
                             store.geometry.coordinates[0],

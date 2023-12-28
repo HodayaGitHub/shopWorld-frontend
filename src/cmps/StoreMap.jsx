@@ -5,6 +5,8 @@ import { Icon } from 'leaflet'
 
 import { mapService } from '../services/map.service'
 import { StoreMarker } from './StoreMarker'
+import { StoreLocations } from './StoreLocations'
+
 import store from '/store.png'
 
 
@@ -16,6 +18,7 @@ export function StoreMap() {
         iconSize: [70, 80],
     })
 
+
     useEffect(() => {
         mapService.loadMap()
             .then((mapData) => {
@@ -26,9 +29,7 @@ export function StoreMap() {
             })
     }, [])
 
-    function handleMoveToLocation(location) {
-        map.setView(location, 14);
-      }
+
 
     return (
         <React.Fragment>
@@ -41,16 +42,26 @@ export function StoreMap() {
 
                 {storeData.map((store) => (
                     <StoreMarker
-                        key={store.properties.PARK_ID}
+                        key={store.properties.STORE_ID}
                         store={store}
                         icon={storeIcon}
                         onclose={onclose}
-                        handleMoveToLocation={handleMoveToLocation}
                     />
                 )
                 )}
+
+
+                {/* {storeData.map((store) => (
+                    <StoreLocations
+                        key={store.properties.STORE_ID}
+                        store={store}
+                    />
+                ))}
+ */}
+
             </MapContainer>
-     
+
+
 
 
         </React.Fragment>
