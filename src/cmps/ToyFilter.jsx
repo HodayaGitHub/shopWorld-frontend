@@ -37,10 +37,10 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        let { value, name: field, type } = target;
-        value = type === 'number' ? +value : value;
+        let { value, name: field, type } = target
+        value = type === 'number' ? +value : value
 
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
 
         // Invoke the debounced function
         onSetFilter.current(filterByToEdit)

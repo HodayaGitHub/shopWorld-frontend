@@ -8,7 +8,7 @@ import Select from '@mui/material/Select'
 import { useEffect, useRef, useState } from "react"
 
 
-export function MultiSelect({ labelsData }) {
+export function MultiSelect({ labelsData, handleChange}) {
     const theme = useTheme()
     const [LableName, setLabelName] = React.useState([])
 
@@ -23,19 +23,6 @@ export function MultiSelect({ labelsData }) {
                 width: 250,
             },
         },
-    }
-
-    function handleChange(event) {
-
-        const { target: { value, type } } = event
-        console.log('value:', value);
-
-        console.log('Type:', type);
-
-        setLabelName(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-        )
     }
 
     function getStyles(label, labelName, theme) {
@@ -54,10 +41,12 @@ export function MultiSelect({ labelsData }) {
                 labelId="name-label"
                 id="multiple-label"
                 multiple
+                name="labels"
                 value={LableName}
                 onChange={handleChange}
                 input={<OutlinedInput label="Labels" />}
                 MenuProps={MenuProps}
+                type="array"
             >
                 {labelsData && (
                     labelsData.map((label) => (
