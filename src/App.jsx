@@ -12,6 +12,8 @@ import { ToyEdit } from './pages/ToyEdit.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { VisitUs } from './pages/VisitUs.jsx'
+import './services/i18n.js'
+
 
 export function App() {
 
