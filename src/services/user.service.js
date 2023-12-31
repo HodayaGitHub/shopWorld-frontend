@@ -26,8 +26,8 @@ async function login({ username, password }) {
     else return Promise.reject('Invalid login')
 }
 
-async function signup({ password, username, fullname }) {
-    const user = { password, username, fullname}
+async function signup({ password, username, fullname, isAdmin}) {
+    const user = { password, username, fullname, isAdmin}
     const user_1 = await httpService.post(BASE_URL + 'signup', user)
     if (user_1) return _setLoggedinUser(user_1)
     else return Promise.reject('Invalid signup')
@@ -43,7 +43,7 @@ async function logout() {
 function _setLoggedinUser(user) {
     // const userToSave = { _id: user._id, username: user.username, score: user.score }
     // const userToSave = { _id: user._id, username: user.username, email: user.email}
-    const userToSave = {username: user.username, email: user.email, fullname: user.fullname}
+    const userToSave = {username: user.username, email: user.email, fullname: user.fullname, isAdmin: user.isAdmin}
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }
@@ -66,6 +66,7 @@ function getEmptyCredentials() {
         // email: '',
         fullname:'',
         password: '',
+
     }
 }
 
@@ -85,7 +86,7 @@ async function updateScore(diff) {
 
 ;(async ()=>{
     // await userService.signup({fullname: 'Admin Smith', username: 'admin_smith', password:'adminPass456', isAdmin: true})
-    // await userService.signup({fullname: 'Admin Smith', username: 'admin_smith', password:'adminPass456', email:'admin_smith@gmail.com', isAdmin: true})
+    await userService.signup({fullname: 'Admin two', username: 'admin_two', password:'adminPass456', email:'admin_two@gmail.com', isAdmin: true})
     
 })()
 

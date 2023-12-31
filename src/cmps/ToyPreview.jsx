@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 // const { Link } = ReactRouterDOM
 export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
+    const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
 
+    console.log('loggedinUser', loggedinUser)
     return (
         <li className="toy-preview" key={toy._id}>
 
@@ -18,14 +21,17 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
             </div>
 
             <span className="toy-price">Price: <span>${toy.price.toLocaleString()}</span></span>
-            <div className="actions-btns-container">
-                <button onClick={() => {
-                    onRemoveToy(toy._id)
-                }}>x</button>
-                <button onClick={() => {
-                    onEditToy(toy)
-                }}>Edit</button>
-            </div>
+
+            {loggedinUser  && loggedinUser.isAdmin &&
+                <div className="actions-btns-container">
+                    <button onClick={() => {
+                        onRemoveToy(toy._id)
+                    }}>x</button>
+                    <button onClick={() => {
+                        onEditToy(toy)
+                    }}>Edit</button>
+                </div>
+            }
         </li>
     )
 }
