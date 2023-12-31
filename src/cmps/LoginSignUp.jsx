@@ -13,8 +13,6 @@ function CustomInput(props) {
 
 export function LoginSignUp() {
 
-
-    const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
     const [isSignupState, setIsSignupState] = useState(false)
 
     const SignupSchema = Yup.object().shape({
@@ -30,7 +28,6 @@ export function LoginSignUp() {
     })
 
     async function onSubmit(formData) {
-        // ev.preventDefault() // No longer needed with async/await
         console.log(formData)
         const authFuncs = { signup, login }
         const method = isSignupState ? 'signup' : 'login'
@@ -50,7 +47,6 @@ export function LoginSignUp() {
         setIsSignupState(!isSignupState)
     }
 
-    // const { username, password, fullname } = credentials
 
     return (
         <div>

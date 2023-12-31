@@ -37,7 +37,6 @@ export function AppHeader() {
 
                 {loggedinUser ? (
                     < section >
-                        {console.log('heheheah')}
                         <span>Hello {loggedinUser.fullname}</span>
                         <button onClick={onLogout}>Logout</button>
                     </ section >
@@ -46,13 +45,6 @@ export function AppHeader() {
                         <LoginSignUp />
                     </section>
                 )}
-
-                {/* 
-                {user &&
-                    <h2>{user.fullname}</h2>
-                }
-                {!user && <LoginSignUp />}
-                {user && <button onClick={onLogout}>log out </button>} */}
             </div>
 
         </header >
