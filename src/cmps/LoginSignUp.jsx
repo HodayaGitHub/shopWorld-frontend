@@ -29,27 +29,6 @@ export function LoginSignUp() {
         password: Yup.string().required('Please provide a password'),
     })
 
-    // function onSubmit(formData) {
-    //     console.log('formData:', formData)
-    //     ev.preventDefault()
-    //     const authFuncs = { signup, login }
-    //     const method = isSignupState ? 'signup' : 'login'
-    //     authFuncs[method](credentials)
-    //         .then((user) => {
-    //             console.log(`Welcome ${user.username}`)
-    //         })
-    //         .catch(err => {
-    //             console.error('OOps try again')
-    //         })
-
-    // }
-
-    function handleCredentialsChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
-    }
-
     async function onSubmit(formData) {
         // ev.preventDefault() // No longer needed with async/await
         console.log(formData)
@@ -58,6 +37,7 @@ export function LoginSignUp() {
 
         try {
             const user = await authFuncs[method](formData)
+
             console.log(`Welcome ${user.fullname}`)
         } catch (err) {
             console.error('OOps try again', err)
@@ -89,7 +69,10 @@ export function LoginSignUp() {
                     <Form className="formik">
                         {isSignupState && (
                             <>
-                                <Field as={CustomInput} name="username" label="Full name" />
+                                <Field
+                                    as={CustomInput}
+                                    name="username"
+                                    label="Full name" />
                                 {errors.username && touched.username && <div>{errors.username}</div>}
                             </>
                         )}
@@ -98,7 +81,10 @@ export function LoginSignUp() {
                         <Field as={CustomInput} name="email" type="email" label="Email" />
                         {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
 
-                        <Field as={CustomInput} name="username" label="User Name" />
+                        <Field
+                            as={CustomInput}
+                            name="username"
+                            label="User Name" />
                         {errors.username && touched.username && <div>{errors.username}</div>}
 
 
@@ -111,7 +97,10 @@ export function LoginSignUp() {
                         />
                         {errors.password && touched.password ? <div>{errors.password}</div> : null}
 
-                        <Button type="submit" variant="contained">
+                        <Button
+                            type="submit"
+                            variant="contained">
+
                             {isSignupState ? 'Sign Up' : 'Login'}
                         </Button>
                     </Form>

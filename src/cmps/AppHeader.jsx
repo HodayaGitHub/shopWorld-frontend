@@ -2,12 +2,22 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { LoginSignUp } from './LoginSignUp.jsx'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { logout } from '../store/actions/user.actions.js'
 
 export function AppHeader() {
 
-    const user = useSelector((storeState) => storeState.user)
+    const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+
+    async function onLogout() {
+        try {
+            await logout()
+            console.log('bye')
+        } catch (err) {
+            console.error('Logout failed', err)
+        }
+    }
 
 
     return (
@@ -24,11 +34,25 @@ export function AppHeader() {
             </section>
 
             <div>
+
+                {loggedinUser ? (
+                    < section >
+                        {console.log('heheheah')}
+                        <span>Hello {loggedinUser.fullname}</span>
+                        <button onClick={onLogout}>Logout</button>
+                    </ section >
+                ) : (
+                    <section>
+                        <LoginSignUp />
+                    </section>
+                )}
+
+                {/* 
                 {user &&
                     <h2>{user.fullname}</h2>
                 }
                 {!user && <LoginSignUp />}
-                {user && <button onClick={onLogout}>log out </button>}
+                {user && <button onClick={onLogout}>log out </button>} */}
             </div>
 
         </header >
