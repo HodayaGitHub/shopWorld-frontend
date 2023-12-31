@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Marker, Popup, useMap } from 'react-leaflet'
+// import { Marker, Popup, useMap } from 'react-leaflet'
 
 export function StoreMarker({ store, icon , mappp}) {
 

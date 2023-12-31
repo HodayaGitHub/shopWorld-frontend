@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 // import { useEffectUpdate } from "./customHooks/useEffectUpdate.js"
 import { MultiSelect } from './MultiSelect'
+// import {SortByForm} from './SortByForm'
+
 import { toyService } from "../services/toy.service.js"
 import { loadLabels } from "../store/actions/toy.actions.js"
 import { Formik, Form, Field } from 'formik'
-import { Button, TextField } from '@mui/material'
-
-
+import { Button, Select, InputLabel, TextField } from '@mui/material'
 
 
 function CustomInput(props) {
@@ -19,10 +19,11 @@ function CustomInput(props) {
 
 export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
+    const [labelsData, setLabelsData] = useState()
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+
     onSetFilter = useRef(utilService.debounce(onSetFilter))
 
-    const [labelsData, setLabelsData] = useState()
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
 
@@ -38,7 +39,9 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
-        value = type === 'number' ? +value : value
+
+        // inputs in html are strings, if the type is number convert it to number
+        value = (type === 'number') ? +value : value
 
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
 
@@ -58,6 +61,7 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
                         initialValues={{
                             txt: '',
                             maxPrice: '',
+                            selectedLabel: '',
                         }}
                     >
                         <Form className="formik">
@@ -71,7 +75,7 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
                                 value={filterByToEdit.txt}
                             />
 
-                            <Field className="formik-field"
+                            <Field className="formik-field-filter"
                                 id="maxPrice"
                                 as={CustomInput}
                                 name="maxPrice"
@@ -80,11 +84,29 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
                                 onChange={handleChange}
                                 value={filterByToEdit.maxPrice || ''}
                             />
+                            {/* 
+                            <Field
+                                // className="formik-field-filter"
+                                id="sortby"
+                                as={Select}
+                                name="sortBy"
+                                // label="Sort By"
+                                onChange={handleChange}
+                                value={"minPrice"}
+                            // placeholder="Email"
+
+                            >
+                                <option value="minPrice">Sort by Min Price</option>
+                                <option value="maxPrice">Sort by Max Price</option>
+
+
+                            </Field> */}
+
                         </Form>
                     </Formik>
                 </div>
-
-                    <MultiSelect labelsData={labelsData} handleChange={handleChange} />
+                {/* <SortByForm></SortByForm> */}
+                <MultiSelect labelsData={labelsData} handleChange={handleChange} />
 
             </div>
 

@@ -43,11 +43,13 @@ function remove(toyId) {
 }
 
 function save(toy) {
-    if (toy._id) {
-        return httpService.put(BASE_URL, toy)
-    } else {
-        return httpService.post(BASE_URL, toy)
-    }
+    return httpService.put(BASE_URL, toy)
+
+    // if (toy._id) {
+    //     return httpService.put(BASE_URL, toy)
+    // } else {
+    //     return httpService.post(BASE_URL, toy)
+    // }
 }
 
 
@@ -63,7 +65,7 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: true }
 }
-
+  
 
 
 // Charts :

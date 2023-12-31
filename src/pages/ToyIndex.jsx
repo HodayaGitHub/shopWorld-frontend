@@ -12,6 +12,7 @@ export function ToyIndex() {
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
 
+
     const navigate = useNavigate()
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Popup, useMap } from 'react-leaflet'
-import { Icon } from 'leaflet'
+// import { MapContainer, TileLayer, Popup, useMap } from 'react-leaflet'
+// import { Icon } from 'leaflet'
 
 import { mapService } from '../services/map.service'
 import { StoreMarker } from './StoreMarker'

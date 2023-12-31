@@ -1,5 +1,5 @@
 // import { useMap } from 'react-leaflet';
-import { Marker, Popup, useMap } from 'react-leaflet'
+// import { Marker, Popup, useMap } from 'react-leaflet'
 
 export function StoreLocations({ store }) {
     const map = useMap()
@@ -11,7 +11,7 @@ export function StoreLocations({ store }) {
                 store.geometry.coordinates[0],
             ],
             14
-        );
+        )
     }
 
 

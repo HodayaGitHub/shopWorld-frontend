@@ -7,6 +7,7 @@ import { showErrorMsgRedux, showSuccessMsgRedux } from "../store/actions/app.act
 
 import { Formik, Form, Field } from 'formik'
 import { Button, TextField } from '@mui/material'
+import * as Yup from 'yup'
 
 function CustomInput(props) {
     return <TextField {...props} variant="outlined" />
@@ -72,7 +73,6 @@ export function ToyEdit() {
                     txt: '',
                     maxPrice: '',
                 }}
-
                 onSubmit={onSaveToy}
             >
 

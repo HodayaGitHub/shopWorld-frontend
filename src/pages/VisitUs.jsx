@@ -8,7 +8,7 @@ export function VisitUs() {
             <h2>Store Locations</h2>
             
             <section className="map-container">
-                <StoreMap />
+                {/* <StoreMap /> */}
             </section>
 
         </div>

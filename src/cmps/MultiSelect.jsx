@@ -25,6 +25,18 @@ export function MultiSelect({ labelsData, handleChange}) {
         },
     }
 
+    function test(event) {
+        const value = [...event.target.value]
+        
+        setLabelName(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        )
+        
+        const target = { ...event.target, type: 'array'}
+        handleChange({ target })
+    }
+
     function getStyles(label, labelName, theme) {
         return {
             fontWeight:
@@ -40,13 +52,12 @@ export function MultiSelect({ labelsData, handleChange}) {
             <Select 
                 labelId="name-label"
                 id="multiple-label"
-                multiple
                 name="labels"
+                multiple
                 value={LableName}
-                onChange={handleChange}
+                onChange={test}
                 input={<OutlinedInput label="Labels" />}
                 MenuProps={MenuProps}
-                type="array"
             >
                 {labelsData && (
                     labelsData.map((label) => (
