@@ -11,6 +11,7 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
+    const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
 
 
     const navigate = useNavigate()
@@ -23,30 +24,30 @@ export function ToyIndex() {
             })
     }, [filterBy])
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsgRedux(`Removed item with ${toyId} id successfuly`)
-            })
-            .catch(err => {
-                console.log('Cannot remove toy', err)
-                showErrorMsgRedux(`Cannot remove toy`)
-            })
+
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsgRedux(`Removed item with ${toyId} id successfully`)
+        } catch (error) {
+            console.error('Cannot remove toy', error)
+            showErrorMsgRedux('Cannot remove toy')
+        }
     }
 
-    function onAddToy() {
-        const toyToSave = toyService.getEmptyToy()
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                console.log('savedToy:', savedToy)
-                showSuccessMsgRedux(`Toy added (name: ${savedToy.name})`)
 
-            })
-            .catch(err => {
-                console.log('Cannot add toy', err)
-                showErrorMsgReduxMsg('Cannot add toy')
-            })
+    async function onAddToy() {
+        try {
+            const toyToSave = toyService.getEmptyToy()
+            const savedToy = await saveToy(toyToSave)
+            console.log('savedToy:', savedToy)
+            showSuccessMsgRedux(`Toy added (name: ${savedToy.name})`)
+        } catch (error) {
+            console.error('Cannot add toy', error)
+            showErrorMsgRedux('Cannot add toy')
+        }
     }
+
 
     function onEditToy(toy) {
         navigate(`/toy/${toy._id}`)

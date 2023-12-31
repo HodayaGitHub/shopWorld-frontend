@@ -6,87 +6,85 @@ import { SET_IS_LOADING, SET_TOYS, SET_FILTER_BY, ADD_TOY, UPDATE_TOY, REMOVE_TO
 
 
 
-export function loadToys() {
+export async function loadToys() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     const filterBy = store.getState().toyModule.filterBy
-    return toyService.query(filterBy)
-        .then(toys => {
+    try {
+        try {
+            const toys = await toyService.query(filterBy)
             store.dispatch({ type: SET_TOYS, toys })
-        })
-        .catch(err => {
+        } catch (err) {
             console.log('toy action -> Cannot load toys', err)
             throw err
-        })
-        .finally(() => {
-            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+        }
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
 }
 
-export function loadToysForStatistics() {
+export async function loadToysForStatistics() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
-    return toyService.query()
-        .then((toys) => {
-            // store.dispatch({ type: SET_TOYS, toys })
+    try {
+        try {
+            const toys = await toyService.query()
             return toys
-        })
-        .catch(err => {
+        } catch (err) {
             console.log('toy action -> Cannot load toys', err)
             throw err
-        })
-        .finally(() => {
-            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+        }
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
 }
 
-export function loadLabels() {
+export async function loadLabels() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
-    return toyService.query()
-        .then((toys) => {
+    try {
+        try {
+            const toys = await toyService.query()
             // store.dispatch({ type: SET_TOYS, toys })
             const labels = toyService.labelsCategories(toys)
-            // console.log('labels', labels)
-
             return labels
-        })
-        .catch(err => {
+        } catch (err) {
             console.log('toy action -> Cannot load labels', err)
             throw err
-        })
-        .finally(() => {
-            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+        }
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
 }
 
 
-export function removeToy(toyId) {
+export async function removeToy(toyId) {
     store.dispatch({ type: REMOVE_TOY, toyId })
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 
-    return toyService.remove(toyId)
-        .catch(err => {
+    try {
+        try {
+            return await toyService.remove(toyId)
+        } catch (err) {
             store.dispatch({ type: TOY_UNDO })
             console.log('item action -> Cannot remove item', err)
             throw err
-        })
-        .finally(() => {
-            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+        }
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
 }
 
 
-export function saveToy(toy) {
+export async function saveToy(toy) {
     const type = toy._id ? UPDATE_TOY : ADD_TOY
-    return toyService.save(toy)
-        .then(toyToSave => {
-            store.dispatch({ type, toy: toyToSave })
-            return toyToSave
-        })
-        .catch(err => {
-            console.log('item action -> Cannot save item', err)
-            throw err
-        })
+    try {
+        const toyToSave = await toyService.save(toy)
+        store.dispatch({ type, toy: toyToSave })
+        return toyToSave
+    } catch (err) {
+        console.log('item action -> Cannot save item', err)
+        throw err
+    }
 }
 
 
