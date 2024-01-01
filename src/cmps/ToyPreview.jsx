@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
     const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
 
-    console.log('loggedinUser', loggedinUser)
+    const fallbackImg = "https://res.cloudinary.com/drlt4yjnj/image/upload/v1704134518/on_error_nhlmpp.png"
+    // console.log('loggedinUser', loggedinUser)
     return (
         <li className="toy-preview" key={toy._id}>
 
@@ -15,14 +16,18 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
 
             <div className="img-container">
                 <img className="toy-img"
-                    src={`/images/toys/${toy.imageFilename}.png`}
+                    src={toy.src || fallbackImg}
                     alt={toy.name}
+                    onError={event => {
+                        event.target.src = { fallbackImg }
+                        event.onerror = null
+                    }}
                 />
             </div>
 
             <span className="toy-price">Price: <span>${toy.price.toLocaleString()}</span></span>
 
-            {loggedinUser  && loggedinUser.isAdmin &&
+            {loggedinUser && loggedinUser.isAdmin &&
                 <div className="actions-btns-container">
                     <button onClick={() => {
                         onRemoveToy(toy._id)
