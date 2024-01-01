@@ -84,10 +84,10 @@ async function updateScore(diff) {
 // userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja'})
 // userService.login({username: 'muki', password: 'muki1'})
 
-;(async ()=>{
-    // await userService.signup({fullname: 'Admin Smith', username: 'admin_smith', password:'adminPass456', isAdmin: true})
-    await userService.signup({fullname: 'Admin two', username: 'admin_two', password:'adminPass456', email:'admin_two@gmail.com', isAdmin: true})
+// ;(async ()=>{
+//     // await userService.signup({fullname: 'Admin Smith', username: 'admin_smith', password:'adminPass456', isAdmin: true})
+    // await userService.signup({fullname: 'Admin two', username: 'admin_two', password:'adminPass456', email:'admin_two@gmail.com', isAdmin: true})
     
-})()
+// })()
 
 

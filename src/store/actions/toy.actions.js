@@ -2,16 +2,18 @@
 // import { toyMockService as toyService } from '../../services/toy.mock.service'
 import { toyService } from '../../services/toy.service.js'
 import { store } from "../store.js"
-import { SET_IS_LOADING, SET_TOYS, SET_FILTER_BY, ADD_TOY, UPDATE_TOY, REMOVE_TOY, TOY_UNDO } from '../reducers/toy.reducer.js'
+import { SET_IS_LOADING, SET_TOYS, SET_FILTER_BY, ADD_TOY, UPDATE_TOY, REMOVE_TOY, TOY_UNDO, SET_SORT_BY } from '../reducers/toy.reducer.js'
 
 
 
 export async function loadToys() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     const filterBy = store.getState().toyModule.filterBy
+    const sortBy = store.getState().toyModule.sortBy
+
     try {
         try {
-            const toys = await toyService.query(filterBy)
+            const toys = await toyService.query(filterBy, sortBy)
             store.dispatch({ type: SET_TOYS, toys })
         } catch (err) {
             console.log('toy action -> Cannot load toys', err)
@@ -90,5 +92,10 @@ export async function saveToy(toy) {
 
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+
+
+export function setSortBy(sortBy) {
+    store.dispatch({ type: SET_SORT_BY, sortBy })
 }
 

@@ -1,17 +1,24 @@
 import { useSelector } from 'react-redux'
 import React, { useEffect } from 'react'
-import { loadToys, removeToy, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
+import { useState } from 'react'
+import { loadToys, removeToy, saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
+
 import { toyService } from '../services/toy.service'
 import { ToyList } from '../cmps/ToyList'
 import { showSuccessMsgRedux, showErrorMsgRedux } from '../store/actions/app.actions.js'
 import { useNavigate } from 'react-router-dom'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { ToySort } from '../cmps/ToySort.jsx'
+
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-    const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    // const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+
+
 
 
     const navigate = useNavigate()
@@ -22,7 +29,7 @@ export function ToyIndex() {
             .catch(() => {
                 showErrorMsgRedux('Cannot show toys')
             })
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
 
     async function onRemoveToy(toyId) {
@@ -64,11 +71,16 @@ export function ToyIndex() {
         showSuccessMsgRedux('Added to Cart')
     }
 
+    function onSetSort(sortBy) {
+        setSortBy(sortBy)
+    }
 
     return (
         <div>
             <main>
                 <ToyFilter toys={toys} filterBy={filterBy} onSetFilter={onSetFilter} />
+                <ToySort sortBy={sortBy} onSetSort={onSetSort} />
+
                 {!isLoading &&
                     <ToyList
                         toys={toys}

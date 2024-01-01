@@ -23,33 +23,28 @@ export const toyService = {
     getDefaultChartData,
     updateChartData,
     labelsCategories,
+    getDefaultSortBy,
 
 }
 
 // const labelsCount = {}
-const BASE_URL = 'toy/'
+const BASE_URL = 'toy'
 
-function query(filterBy = {}) {
-    return httpService.get('toy', filterBy)
-}
+function query(filterBy = {}, sortBy = {}) {
+    return httpService.get(BASE_URL, { filterBy, sortBy })
+} 
 
 
 function getById(toyId) {
-    return httpService.get(BASE_URL + toyId)
+    return httpService.get(`${BASE_URL}/${toyId}`)
 }
 
 function remove(toyId) {
-    return httpService.delete(BASE_URL + toyId)
+    return httpService.delete(`${BASE_URL}/${toyId}`)
 }
 
 function save(toy) {
     return httpService.put(BASE_URL, toy)
-
-    // if (toy._id) {
-    //     return httpService.put(BASE_URL, toy)
-    // } else {
-    //     return httpService.post(BASE_URL, toy)
-    // }
 }
 
 
@@ -65,7 +60,13 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: true }
 }
-  
+
+function getDefaultSortBy() {
+    return {
+        by: 'name',
+        asc: true,
+    }
+}
 
 
 // Charts :
