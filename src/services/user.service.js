@@ -26,8 +26,8 @@ async function login({ username, password }) {
     else return Promise.reject('Invalid login')
 }
 
-async function signup({ password, username, fullname, isAdmin}) {
-    const user = { password, username, fullname, isAdmin}
+async function signup({ fullname, username, password, email, isAdmin}) {
+    const user = { fullname, username, password, email, isAdmin}
     const user_1 = await httpService.post(BASE_URL + 'signup', user)
     if (user_1) return _setLoggedinUser(user_1)
     else return Promise.reject('Invalid signup')
@@ -62,11 +62,11 @@ function getLoggedinUser() {
 
 function getEmptyCredentials() {
     return {
-        username: '',
-        // email: '',
         fullname:'',
+        username: '',
         password: '',
-
+        email: '',
+        isAdmin: false,
     }
 }
 
@@ -87,6 +87,10 @@ async function updateScore(diff) {
 // ;(async ()=>{
 //     // await userService.signup({fullname: 'Admin Smith', username: 'admin_smith', password:'adminPass456', isAdmin: true})
     // await userService.signup({fullname: 'Admin two', username: 'admin_two', password:'adminPass456', email:'admin_two@gmail.com', isAdmin: true})
+    // await userService.signup({fullname: 'User one', username: 'User_one', password:'useronePass456', email:'User_one@gmail.com', isAdmin: false})
+    // await userService.signup({fullname: 'User two', username: 'User_two', password:'usertwoPass456', email:'User_two@gmail.com', isAdmin: false})
+
+
     
 // })()
 

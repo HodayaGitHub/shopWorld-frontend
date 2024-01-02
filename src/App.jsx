@@ -5,6 +5,8 @@ import './assets/style/main.css'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { HomePage } from './pages/HomePage.jsx'
+import { ToyDetails } from './pages/ToyDetails.jsx'
+
 
 import { store } from './store/store.js'
 import { ToyIndex } from './pages/ToyIndex.jsx'
@@ -28,6 +30,7 @@ export function App() {
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<AboutUs />} path="/about" />
                             <Route element={<ToyEdit />} path="/toy/:toyId" />
+                            <Route element={<ToyDetails />} path="/toy/details/:toyId" />
                             <Route element={<Dashboard />} path="/dashboard" />
                             <Route element={<VisitUs />} path="/visitus" />
 

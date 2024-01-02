@@ -19,11 +19,12 @@ export function LoginSignUp() {
         username: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('We need your full name'),
         email: Yup.string().email('Invalid email').required('Please provide email'),
         password: Yup.string().min(8, 'Password must be at least 8 characters').required('Please provide a password'),
+        fullname: Yup.string().required('We need your full name'),
     })
 
     const SigninSchema = Yup.object().shape({
         // email: Yup.string().email('Invalid email').required('Please provide email'),
-        username: Yup.string().required('We need your full name'),
+        username: Yup.string().required('We need your username'),
         password: Yup.string().required('Please provide a password'),
     })
 
@@ -54,9 +55,10 @@ export function LoginSignUp() {
 
             <Formik
                 initialValues={{
-                    // email: '',
+                    email: '',
                     password: '',
                     username: '',
+                    fullname: '',
                 }}
                 validationSchema={isSignupState ? SignupSchema : SigninSchema}
                 onSubmit={onSubmit}
@@ -65,18 +67,24 @@ export function LoginSignUp() {
                     <Form className="formik">
                         {isSignupState && (
                             <>
+
+                                <Field as={CustomInput} name="email" type="email" label="Email" />
+                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+
                                 <Field
                                     as={CustomInput}
                                     name="username"
-                                    label="Full name" />
+                                    label="User Name" />
                                 {errors.username && touched.username && <div>{errors.username}</div>}
+
+                                <Field
+                                    as={CustomInput}
+                                    name="fullname"
+                                    label="Full Name" />
+                                {errors.fullname && touched.fullname && <div>{errors.fullname}</div>}
+
                             </>
                         )}
-
-                        {/* 
-                        <Field as={CustomInput} name="email" type="email" label="Email" />
-                        {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
-
                         <Field
                             as={CustomInput}
                             name="username"
@@ -93,6 +101,7 @@ export function LoginSignUp() {
                         />
                         {errors.password && touched.password ? <div>{errors.password}</div> : null}
 
+
                         <Button
                             type="submit"
                             variant="contained">
@@ -102,6 +111,7 @@ export function LoginSignUp() {
                     </Form>
                 )}
             </Formik>
+
             <div className="btns">
                 <a href="#" onClick={onToggleSignupState}>
                     {isSignupState ? 'Already a member? Login' : 'New user? Signup here'}

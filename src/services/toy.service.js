@@ -24,7 +24,8 @@ export const toyService = {
     updateChartData,
     labelsCategories,
     getDefaultSortBy,
-
+    addMsg,
+    removeMsg,
 }
 
 // const labelsCount = {}
@@ -46,6 +47,8 @@ function remove(toyId) {
 function save(toy) {
     return httpService.put(BASE_URL, toy)
 }
+
+
 
 
 function getEmptyToy() {
@@ -163,4 +166,16 @@ function labelsData(labels, inStockLabelsCount, totalInStockCount) {
         const percentage = (count / totalInStockCount) * 100 || 0
         return parseFloat(percentage.toFixed(2))
     })
+}
+
+
+async function addMsg(toyId, txt) {
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
+}
+
+
+async function removeMsg(toyId, msgId) {
+    const removedId = await httpService.delete(`toy/${toyId}/msg/${msgId}`)
+    return removedId
 }

@@ -27,16 +27,20 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
 
             <span className="toy-price">Price: <span>${toy.price.toLocaleString()}</span></span>
 
-            {loggedinUser && loggedinUser.isAdmin &&
-                <div className="actions-btns-container">
-                    <button onClick={() => {
-                        onRemoveToy(toy._id)
-                    }}>x</button>
-                    <button onClick={() => {
-                        onEditToy(toy)
-                    }}>Edit</button>
-                </div>
-            }
+            <div className="actions-btns-container">
+                <button> <Link className='details-btn' to={`/toy/details/${toy._id}`}>Details</Link></button>
+
+                {loggedinUser && loggedinUser.isAdmin &&
+                    <>
+                        <button onClick={() => {
+                            onRemoveToy(toy._id)
+                        }}>x</button>
+                        <button onClick={() => {
+                            onEditToy(toy)
+                        }}>Edit</button>
+                    </>
+                }
+            </div>
         </li>
     )
 }
