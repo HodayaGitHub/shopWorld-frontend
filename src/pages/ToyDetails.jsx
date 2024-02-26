@@ -77,25 +77,12 @@ export function ToyDetails() {
                     ))}
             </ul>
 
-            {/* <form className="login-form" onSubmit={onSaveMsg}>
-                <input
-                    type="text"
-                    name="txt"
-                    value={txt}
-                    placeholder="Username"
-                    onChange={handleMsgChange}
-                    required
-                    autoFocus
-                />
-                <button>Send</button>
-            </form> */}
-
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
                 cumque tempore, aperiam sed dolorum rem!
             </p>
 
-            <Review></Review>
+            {/* <Review></Review> */}
             <button> <Link className='back-btn' to={`/toy`}>Back</Link></button>
         </section>
     )
