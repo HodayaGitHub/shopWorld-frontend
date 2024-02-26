@@ -3,6 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toyService } from '../services/toy.service.js'
 // import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
+
+import { Review } from '../cmps/Review.jsx'
+
 function getEmptyMsg() {
     return {
         txt: '',
@@ -55,15 +58,6 @@ export function ToyDetails() {
         // showSuccessMsg('Msg removed!')
     }
 
-    //msg example
-    // {
-    //     id: 'm101',
-    //     txt: 'Great toy, how much',
-    //     by: {
-    //     _id: 'u101',
-    //     fullname: 'Puki Ga'
-    //     }
-    // }
 
     const { txt } = msg
 
@@ -72,17 +66,13 @@ export function ToyDetails() {
         <section className="toy-details">
             <h1>{toy.name}</h1>
             <h5>Price: ${toy.price}</h5>
-            <img src={toy.src} alt="" />
+            <img src={toy.imgSrc} alt="" />
             <ul>
                 {toy.msgs &&
                     toy.msgs.map((msg) => (
                         <li key={msg.id}>
                             By: {msg.by.fullname} - {msg.txt}
-                            <button
-                                type="button"
-                                onClick={() => onRemoveMsg(msg.id)}>
-                                X
-                            </button>
+                            <button type="button" onClick={() => onRemoveMsg(msg.id)}>X</button>
                         </li>
                     ))}
             </ul>
@@ -99,11 +89,13 @@ export function ToyDetails() {
                 />
                 <button>Send</button>
             </form> */}
-            
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
                 cumque tempore, aperiam sed dolorum rem!
             </p>
+
+            <Review></Review>
             <button> <Link className='back-btn' to={`/toy`}>Back</Link></button>
         </section>
     )

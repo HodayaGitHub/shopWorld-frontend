@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux'
 export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
     const loggedinUser = useSelector((storeState) => storeState.userModule.loggedinUser)
 
-    const fallbackImg = "https://res.cloudinary.com/drlt4yjnj/image/upload/v1704134518/on_error_nhlmpp.png"
-    // console.log('loggedinUser', loggedinUser)
+    const fallbackImg = "https://res.cloudinary.com/drlt4yjnj/image/upload/v1708971776/myStore/toys/on_error.png"
+
     return (
         <li className="toy-preview" key={toy._id}>
 
@@ -16,8 +16,8 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
 
             <div className="img-container">
                 <img className="toy-img"
-                    src={toy.src || fallbackImg}
-                    alt={toy.name}
+                    src={toy.imgSrc || fallbackImg}
+                    alt={toy.title}
                     onError={event => {
                         event.target.src = { fallbackImg }
                         event.onerror = null
@@ -29,15 +29,10 @@ export function ToyPreview({ toy, onRemoveToy, onEditToy }) {
 
             <div className="actions-btns-container">
                 <button> <Link className='details-btn' to={`/toy/details/${toy._id}`}>Details</Link></button>
-
                 {loggedinUser && loggedinUser.isAdmin &&
                     <>
-                        <button onClick={() => {
-                            onRemoveToy(toy._id)
-                        }}>x</button>
-                        <button onClick={() => {
-                            onEditToy(toy)
-                        }}>Edit</button>
+                        <button onClick={() => { onRemoveToy(toy._id) }}>x</button>
+                        <button onClick={() => { onEditToy(toy) }}>Edit</button>
                     </>
                 }
             </div>
