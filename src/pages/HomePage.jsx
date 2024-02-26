@@ -38,7 +38,7 @@ export function HomePage() {
             </div>
 
 
-            <p>{t('learn')}</p>
+            {/* <p>{t('learn')}</p> */}
             <Trans i18nKey="desc">hello description</Trans>
 
             <img src={toyStoryLogoUrl} alt="Toy Story Logo" />

@@ -5,7 +5,7 @@ export function ChartPie({ chartData }) {
     return (
         <div className="main-layout dashboard-main-container">
             <div className="chart-container">
-                <h2 className="chart-txt" style={{ textAlign: "center" }}>Toys stock status by labels</h2>
+                <h2 className="chart-txt" style={{ textAlign: "center" }}>Products stock status by labels</h2>
                 <Pie
                     data={chartData}
                     options={{

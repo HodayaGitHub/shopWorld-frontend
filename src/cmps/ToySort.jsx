@@ -9,14 +9,17 @@ export function ToySort({ sortBy, onSetSort }) {
 
     function handleToggleDirection() {
         const updatedSort = { ...sortBy, asc: !sortBy.asc }
+        log()
         onSetSort(updatedSort)
     }
 
     return <section className="toy-sort">
-        <h3>Sort toys:</h3>
+        <h3>Sort By:</h3>
         <button onClick={() => handleSortChange('name')}>By name</button>
-        <button onClick={() => handleSortChange('price')}>By price</button>
-        <button onClick={handleToggleDirection}>Change direction {sortBy.asc ? '^' : 'v'}</button>
+        <button onClick={() => handleSortChange('price ')}>By price</button>
+        <button onClick={handleToggleDirection}>
+            {sortBy.asc ? 'low to high ⬆' : 'heigh to low ⬇'}
+        </button>
     </section>
 }
 

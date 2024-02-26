@@ -23,11 +23,11 @@ export function AppHeader() {
     return (
         <header className="app-header full main-layout">
             <section className="header-container">
-                <h1>TOYS ARE TOYS</h1>
+                <h1>Welcome to Shop World</h1>
                 <nav className="app-nav">
 
                     <NavLink className="header-link" to="/">Home</NavLink>
-                    <NavLink className="header-link" to="/toy">Toys</NavLink>
+                    <NavLink className="header-link" to="/toy">Products</NavLink>
                     <NavLink className="header-link" to="/dashboard">Dashboard</NavLink>
                     <NavLink className="header-link" to="/visitus">Our Stores</NavLink>
                 </nav>

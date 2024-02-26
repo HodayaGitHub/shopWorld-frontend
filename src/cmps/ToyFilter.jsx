@@ -39,20 +39,15 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
-
-        // inputs in html are strings, if the type is number convert it to number
         value = (type === 'number') ? +value : value
-
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-
-        // Invoke the debounced function
         onSetFilter.current(filterByToEdit)
     }
 
 
     return (
         <section className="toy-filter full main-layout">
-            <h2>Toys Filter</h2>
+            <h2>Products Filter</h2>
 
             <div className="filter-container">
 
@@ -69,7 +64,7 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
                                 id="name"
                                 as={CustomInput}
                                 name="txt"
-                                label="Toy Name"
+                                label="Product Name"
                                 type="text"
                                 onChange={handleChange}
                                 value={filterByToEdit.txt}
@@ -84,24 +79,6 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
                                 onChange={handleChange}
                                 value={filterByToEdit.maxPrice || ''}
                             />
-                            {/* 
-                            <Field
-                                // className="formik-field-filter"
-                                id="sortby"
-                                as={Select}
-                                name="sortBy"
-                                // label="Sort By"
-                                onChange={handleChange}
-                                value={"minPrice"}
-                            // placeholder="Email"
-
-                            >
-                                <option value="minPrice">Sort by Min Price</option>
-                                <option value="maxPrice">Sort by Max Price</option>
-
-
-                            </Field> */}
-
                         </Form>
                     </Formik>
                 </div>
