@@ -11,11 +11,17 @@ export const userService = {
     getById,
     getLoggedinUser,
     updateScore,
-    getEmptyCredentials
+    getEmptyCredentials,
+    getUsers,
 }
 
 function getById(userId) {
     return httpService.get(BASE_URL + userId)
+}
+
+function getUsers() {
+    // return storageService.query('user')
+    return httpService.get(`user`)
 }
 
 async function login({ username, password }) {
@@ -90,6 +96,7 @@ async function updateScore(diff) {
     // await userService.signup({fullname: 'User one', username: 'User_one', password:'useronePass456', email:'User_one@gmail.com', isAdmin: false})
     // await userService.signup({fullname: 'User two', username: 'User_two', password:'usertwoPass456', email:'User_two@gmail.com', isAdmin: false})
 
+    // await userService.signup({fullname: 'User 3', username: 'User_3', password:'user3Pass456', email:'User_3@gmail.com', isAdmin: false})
 
     
 // })()

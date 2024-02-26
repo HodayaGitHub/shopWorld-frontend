@@ -3,12 +3,15 @@ import { combineReducers, createStore } from "redux"
 import { toyReducer } from "./reducers/toy.reducer"
 import { appReducer } from "./reducers/app.reducer"
 import { userReducer } from "./reducers/user.reducer"
+import { reviewReducer } from "./reducers/review.reducer"
+import { systemReducer } from "./reducers/system.reducer"
 
 const rootReducer = combineReducers({
     toyModule: toyReducer,
     appModule: appReducer,
     userModule: userReducer,
-
+    reviewModule: reviewReducer, 
+    systemModule: systemReducer, 
 })
 
 
