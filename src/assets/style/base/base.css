@@ -8,8 +8,8 @@ body {
   margin: 0;
   /* color: var(--gray3); */
   /* color: white; */
-  background: #444;
-  color: rgb(153, 166, 149);
+  background: #ffff;
+  color: #000000;
   font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 

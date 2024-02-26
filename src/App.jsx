@@ -33,7 +33,6 @@ export function App() {
                             <Route element={<ToyDetails />} path="/toy/details/:toyId" />
                             <Route element={<Dashboard />} path="/dashboard" />
                             <Route element={<VisitUs />} path="/visitus" />
-
                         </Routes>
                     </main>
                     <AppFooter />

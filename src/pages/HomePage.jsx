@@ -21,7 +21,7 @@ export function HomePage() {
     return (
         <section>
             <h2>
-                welcome to home page
+                Welcome to home page
             </h2>
 
             <div>

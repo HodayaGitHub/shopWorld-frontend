@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link} from 'react-router-dom'
 import { LoginSignUp } from './LoginSignUp.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -23,7 +23,13 @@ export function AppHeader() {
     return (
         <header className="app-header full main-layout">
             <section className="header-container">
-                <h1>Welcome to Shop World</h1>
+                <Link to="/toy">
+                    <span className='logo-container'>
+                        <img src="/logo-bag.png" />
+                        <h1>Welcome to Shop World!</h1>
+                    </span>
+                </Link>
+
                 <nav className="app-nav">
 
                     <NavLink className="header-link" to="/">Home</NavLink>
@@ -33,7 +39,7 @@ export function AppHeader() {
                 </nav>
             </section>
 
-            <div>
+            {/* <div>
 
                 {loggedinUser ? (
                     < section >
@@ -45,7 +51,7 @@ export function AppHeader() {
                         <LoginSignUp />
                     </section>
                 )}
-            </div>
+            </div> */}
 
         </header >
     )

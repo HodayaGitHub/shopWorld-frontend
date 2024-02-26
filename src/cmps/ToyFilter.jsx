@@ -46,7 +46,7 @@ export function ToyFilter({ filterBy, onSetFilter, toys }) {
 
 
     return (
-        <section className="toy-filter full main-layout">
+        <section className="toy-filter">
             <h2>Products Filter</h2>
 
             <div className="filter-container">

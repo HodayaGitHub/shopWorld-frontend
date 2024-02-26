@@ -1,6 +1,6 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 1.6rem 1fr 1.6rem;
+    grid-template-columns:100px 1fr 100px;
 }
 
 .main-layout>* {
@@ -22,7 +22,6 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: var(--clr1);
-    color: var(--clr1bg);
-    /* padding: 1em; */
+    color: var(--clr2);
     text-align: center;
 }
