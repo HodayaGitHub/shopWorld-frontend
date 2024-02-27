@@ -33,7 +33,7 @@ const BASE_URL = 'toy'
 
 function query(filterBy = {}, sortBy = {}) {
     return httpService.get(BASE_URL, { filterBy, sortBy })
-} 
+}
 
 
 function getById(toyId) {
@@ -96,7 +96,6 @@ function getDefaultChartData() {
 function labelsCategories(allToys) {
     const inStockLabelsCount = countInStockLabels(allToys)
     const labels = Object.keys(inStockLabelsCount)
-    console.log(labels)
     return labels
 }
 
@@ -126,8 +125,6 @@ function countInStockLabels(toys) {
             })
         }
     })
-
-    console.log(labelsCount);
     return labelsCount
 }
 

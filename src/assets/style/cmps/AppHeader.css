@@ -4,7 +4,7 @@
   padding-bottom: 30px;
   margin-bottom: 50px;
   /* background-image: url('/public/abstract-background-wallpaper-zoom.jpg'); */
-  background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url('/public/wp9127221.webp');
+  background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url('/wp9127221.webp');
 
   background-size: cover;
   height: 100%;
