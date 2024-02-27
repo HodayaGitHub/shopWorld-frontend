@@ -17,7 +17,7 @@ i18next
       es: {
         translation: {
           learn: 'Learn React es',
-          desc: "hello es"
+          desc: "Hola"
         }
       }
     }

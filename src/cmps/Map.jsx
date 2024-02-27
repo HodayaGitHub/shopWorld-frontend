@@ -9,8 +9,7 @@ import { Tooltip } from 'react-tooltip'
 export function Map() {
 
   // dotenv.config()
-  const API_KEY = import.meta.env.REACT_APP_GOOGLE_MAP_API || 'AIzaSyBWcNTwn-dWPn_JZhBhSlcj8z8I61GbkVE'
-
+  const API_KEY = import.meta.env.REACT_APP_GOOGLE_MAP_API 
 
   const [center, setCenter] = useState({ lat: 31.7139892578125, lng: 34.98474884033203 })
   const zoom = 10
