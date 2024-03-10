@@ -12,7 +12,6 @@ Welcome to the Demo Online Shop - Your One-Stop Destination for Toys and Electro
 5. [Getting Started](#getting-started)
 6. [Technologies Used](#technologies-used)
 7. [How to Use](#how-to-use)
-8. [Feedback and Support](#feedback-and-support)
 
 ## 1. Introduction
 The Demo Online Shop is a project created for studying purposes, showcasing a simplified online shopping experience. Whether you're looking for toys to spark imagination or cutting-edge electronics, our demo shop offers a glimpse into the world of e-commerce.
